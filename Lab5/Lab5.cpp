@@ -2,13 +2,41 @@
 //
 
 #include <iostream>
+#include <vector>
+#include <string>
 
-int main()
-{
-    std::cout << "Hello World!\n";
+char translateChar(const std::vector<char>& cipher, char c) {
+	if (c >= 'A' && c <= 'Z') {
+		return cipher[c - 'A'];
+	}
+	else if (c >= 'a' && c <= 'z') {
+		return cipher[c - 'a'] + 32;
+	}
+	else {
+		return c;
+	}
 }
 
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
+int main() {
+
+	std::vector<char> cipher = { 'V', 'F', 'X', 'B', 'L', 'I', 'T', 'Z', 'J', 'R', 'P', 'H', 'D', 'K', 'N', 'O', 'W', 'S', 'G', 'U', 'Y', 'Q', 'M', 'A', 'C', 'E' };
+
+	std::string text;
+
+	std::cout << "Input text to cypher: ";
+	std::getline(std::cin, text);
+
+	for (char& c : text) {
+		c = translateChar(cipher, c);
+	}
+
+	std::cout << "Encoded Message: " << text << std::endl;
+
+	return 0;
+}
+
+
+	// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
 // Debug program: F5 or Debug > Start Debugging menu
 
 // Tips for Getting Started: 
